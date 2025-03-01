@@ -233,6 +233,7 @@ body {
 	margin-top: 30px;
 	margin-bottom: -10px;
 	display: flex;
+	color: white;
 	justify-content: center;
 	
 }
@@ -251,7 +252,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items:center;
-	height: 100vh;
+	height: 105vh;
 	width: 100%;
 	background-attachment: scroll;
 	background-position: center;
@@ -442,12 +443,12 @@ form .user-details .input-box1
 	border-radius: 5px;
 	margin-top: 10px;
 	letter-spacing: 1px;
-	background: linear-gradient(135deg, #000000, #00FFFF);
+	background: linear-gradient(135deg, #008B8B, #00FFFF);
 	
 }
 .sbutton button:hover
 {
-	background: linear-gradient(-135deg, #000000, #00FFFF);
+	background: linear-gradient(-135deg, #008B8B, #00FFFF);
 }
 
 .delete-button button
@@ -502,7 +503,7 @@ form .user-details .input-box1
 	margin-top: 10px;
 	letter-spacing: 1px;
 	padding: 10px 10px;
-	background: linear-gradient(135deg, #000000, #00FFFF);
+	background: linear-gradient(135deg, #008B8B, #00FFFF);
 	
 }
 
@@ -514,7 +515,7 @@ form .user-details .input-box1
 }
 #adstcmp:hover
 {
-	background: linear-gradient(-135deg, #000000, #00FFFF);
+	background: linear-gradient(-135deg, #008B8B, #00FFFF);
 }
 
 form .button button
@@ -530,12 +531,12 @@ form .button button
 	margin-top: 10px;
 	margin-bottom: -10px;
 	letter-spacing: 1px;
-	background: linear-gradient(135deg, #000000, #00FFFF);
+	background: linear-gradient(135deg, #008B8B, #00FFFF);
 
 }
 form .button button:hover
 {
-	background: linear-gradient(-135deg, #000000, #00FFFF);
+	background: linear-gradient(-135deg, #008B8B, #00FFFF);
 }
 
 .title {

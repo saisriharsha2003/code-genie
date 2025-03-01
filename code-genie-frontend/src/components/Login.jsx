@@ -112,8 +112,8 @@ const Login = () => {
         <MainNav />
       </div>
       <div className="signup">
-        <div className="container">
-          <div className="title">Login to SmartBill</div>
+        <div className="container" style={{opacity: 0.9}}>
+          <div className="title">Login to CodeGenie</div>
           <form id="my_login_form" onSubmit={handleSubmit}>
             <div className="user-details">
               <div className="input-box">

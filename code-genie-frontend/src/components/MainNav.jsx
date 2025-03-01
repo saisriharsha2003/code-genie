@@ -7,7 +7,7 @@ const MainNav = () => {
         <div>
           <nav >
           <Link to="/">
-            <img className="logo" src={logo} alt="SmartBill Logo" />
+            <img className="logo" src={logo} alt="CodeGenie Logo" />
           </Link>
           <ul>
             <li><Link to="/" >Home</Link></li>
