@@ -7,10 +7,10 @@ const Home = () => {
       <div className="hero">
         <Nav />
       </div>
-      <div className="bg1">
+      <div className="bg1 mt-8">
         <div className="container" style={{ background: "black", opacity: 0.9 }}>
-          <p className="text-4xl font-semibold text-[#CCBA78] flex justify-center items-center">
-            Welcome to<span className="homep">CodeGenie</span>
+          <p className="homep1">
+            Welcome to <span className="homep">CodeGenie</span>
           </p>
         </div>
       </div>
