@@ -1,0 +1,147 @@
+.profile-container {
+  background: url(../images/background_image.webp);
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 105vh;
+  width: 100%;
+  background-attachment: scroll;
+  background-position: center;
+}
+
+.profile-box {
+  background: black;
+  opacity: 0.9;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.profile-box .title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #00ffff;
+  margin-bottom: 20px;
+  animation: slideIn 0.5s ease-in-out;
+}
+
+.profile-box .profile-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-between;
+}
+
+.profile-box .input-group {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 12px;
+  transition: transform 0.3s ease-in-out;
+  width: calc(50% - 10px);
+  position: relative;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.profile-box .input-group:hover {
+  transform: scale(1.05);
+}
+
+.profile-box .input-group i {
+  color: #00ffff;
+  margin-right: 10px;
+  font-size: 18px;
+  transition: transform 0.3s;
+}
+
+.profile-box .input-group:hover i {
+  transform: rotate(10deg);
+}
+
+.profile-box .details {
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
+  color: white;
+  font-weight: bold;
+}
+
+.profile-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+}
+
+.profile-box input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.3s ease-in-out;
+}
+
+.profile-box input:focus::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.profile-box .profile-btn {
+  background: linear-gradient(135deg, #008b8b, #00ffff);
+  border: none;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+  margin-top: 15px;
+  animation: bounceIn 0.6s ease-in-out;
+}
+
+.profile-box .profile-btn:hover {
+  transform: scale(1.1);
+  background: linear-gradient(-135deg, #008b8b, #00ffff);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
