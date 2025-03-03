@@ -1,0 +1,146 @@
+.register-container {
+  background: url(../images/background_image.webp);
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 105vh;
+  width: 100%;
+  background-attachment: scroll;
+  background-position: center;
+}
+
+.register-box {
+  background: black;
+  opacity: 0.9;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.register-box .title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #00ffff;
+  margin-bottom: 20px;
+}
+
+.register-box .register-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-between;
+}
+
+.register-box .input-group {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 12px;
+  transition: transform 0.3s ease-in-out;
+  width: calc(50% - 10px);
+}
+
+.register-box .input-group:hover {
+  transform: scale(1.05);
+}
+
+.register-box .icon {
+  color: #00ffff;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.register-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+}
+
+.register-box .password-message {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.match {
+  color: #00ff00;
+}
+
+.nomatch {
+  color: #ff0000;
+}
+
+.register-box .register-btn {
+  background: linear-gradient(135deg, #008b8b, #00ffff);
+  border: none;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.register-box .register-btn:hover {
+  transform: scale(1.1);
+  background: linear-gradient(-135deg, #008b8b, #00ffff);
+}
+
+.register-box .login-link {
+  margin-top: 15px;
+  color: white;
+}
+
+.register-box .login-link a {
+  color: #00ffff;
+  text-decoration: underline;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.register-box .login-link a:hover {
+  color: #008b8b;
+}
+.register-box .password-error {
+  color: red;
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 5px;
+  text-align: left;
+  animation: shake 0.3s ease-in-out;
+}
+
+.register-box .password-success {
+  color: #00ff00;
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 5px;
+  text-align: left;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

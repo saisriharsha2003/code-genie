@@ -1,18 +1,17 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "../index.css";
 import { BASE_URL } from "../config";
-import MainNav from "./MainNav";
 import { useNavigate } from "react-router-dom";
-import BeatLoader from "react-spinners/BeatLoader";
+import { motion } from "framer-motion";
+import { FaUser, FaEnvelope, FaPhone, FaLock } from "react-icons/fa";
+import "../assets/styles/register.css";
+import MainNav from "./MainNav";
 
 const Register = () => {
   const navigate = useNavigate();
-  let [loading, setLoading] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,109 +20,40 @@ const Register = () => {
     password: "",
     cpassword: "",
   });
+  const [passwordMatch, setPasswordMatch] = useState(null);
 
-  const [errorMessages, setErrorMessages] = useState({
-    error: "",
-    message: "",
-  });
+  useEffect(() => {
+    if (formData.password && formData.cpassword) {
+      setPasswordMatch(formData.password === formData.cpassword);
+    } else {
+      setPasswordMatch(null);
+    }
+  }, [formData.password, formData.cpassword]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const load = () => {
-    return (
-      <div
-        className={`flex justify-center items-center h-screen ${
-          loading ? "block" : "hidden"
-        }`}
-      >
-        <div className="bg-white p-5 rounded-lg">
-          <BeatLoader loading={loading} className="text-cyan-900 text-3xl" />
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
-      </div>
-    );
-  };
-
-  useEffect(() => {
-    checkPasswordMatch();
-  }, [formData.password, formData.cpassword]);
-  const checkPasswordMatch = () => {
-    const { password, cpassword } = formData;
-    const msgElement = document.getElementById("message");
-
-    if (password && cpassword) {
-      if (password === cpassword) {
-        msgElement.textContent = "Password matches.";
-        msgElement.classList.add("match");
-        msgElement.classList.remove("nomatch");
-      } else {
-        msgElement.textContent = "Passwords do not match.";
-        msgElement.classList.add("nomatch");
-        msgElement.classList.remove("match");
-      }
-    } else {
-      msgElement.textContent = "";
-    }
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (
-      !formData.name ||
-      !formData.email ||
-      !formData.mobile ||
-      !formData.uname ||
-      !formData.password ||
-      !formData.cpassword
-    ) {
-      toast.error("Fill all details properly", {
-        position: "top-right",
-          autoClose: 1500
-        });
+    if (Object.values(formData).some((field) => field === "")) {
+      toast.error("Please fill in all fields", { autoClose: 1500 });
       return;
     }
-
+    if (!passwordMatch) {
+      toast.error("Passwords do not match", { autoClose: 1500 });
+      return;
+    }
     setLoading(true);
-
-    const phoneNumber = formData.mobile;
     try {
-      const response = await axios.post(
-        BASE_URL + "/api/user/register",
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      
-      toast.success(response.data.message, {
-        position: "top-right",
-          autoClose: 1500
-        });
-
-      setTimeout(() => {
-        toast.success("Redirecting to login...", {
-          position: "top-right",
-        });
-        setTimeout(() => {
-          navigate("/login");
-        }, 1000);
-      }, 2000);
+      const response = await axios.post(`${BASE_URL}/api/user/register`, formData, {
+        headers: { "Content-Type": "application/json" },
+      });
+      toast.success(response.data.message, { autoClose: 1500 });
+      setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
-      toast.error(
-        err.response?.data?.message || "An error occurred. Please try again."
-      , {
-        position: "top-right",
-          autoClose: 1500
-        });
+      toast.error(err.response?.data?.message || "An error occurred.", { autoClose: 1500 });
     } finally {
       setLoading(false);
     }
@@ -131,108 +61,42 @@ const Register = () => {
 
   return (
     <div>
-      <div className="hero">
-        <MainNav />
-      </div>
-      <div className="bg1">
-        <div className="container" style={{ opacity: 0.9 }}>
-          <div className="title">Register to CodeGenie</div>
-          <form onSubmit={handleSubmit}>
-            <div className="user-details">
-              <div className="input-box">
-                <span className="details">Full Name</span>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Enter your Full Name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="input-box">
-                <span className="details">Email</span>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter your Email Id"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="input-box">
-                <span className="details">Mobile Number</span>
-                <input
-                  type="text"
-                  name="mobile"
-                  placeholder="Enter your Mobile Number"
-                  required
-                  value={formData.mobile}
-                  onChange={handleChange}
-                  onInvalid={(e) =>
-                    e.target.setCustomValidity(
-                      "Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9."
-                    )
-                  }
-                  onInput={(e) => e.target.setCustomValidity("")}
-                />
-              </div>
-              <div className="input-box">
-                <span className="details">Username</span>
-                <input
-                  type="text"
-                  name="uname"
-                  placeholder="Enter your Username"
-                  required
-                  value={formData.uname}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="input-box">
-                <span className="details">Password</span>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Enter your Password"
-                  required
-                  value={formData.password}
-                  onChange={handleChange}
-                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                  title="Password must contain at least one number, one uppercase letter, one lowercase letter, and be at least 8 characters long."
-                />
-              </div>
-              <div className="input-box">
-                <span className="details">Confirm Password</span>
-                <input
-                  type="password"
-                  name="cpassword"
-                  placeholder="Confirm your Password"
-                  required
-                  value={formData.cpassword}
-                  onChange={handleChange}
-                />
-                <span className="message" id="message"></span>
-              </div>
+      <MainNav />
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="register-container">
+        <motion.div className="register-box" initial={{ scale: 0.8 }} animate={{ scale: 1 }}>
+          <h2 className="title">Register to CodeGenie</h2>
+          <form onSubmit={handleSubmit} className="register-form">
+            <div className="input-group">
+              <FaUser className="icon" />
+              <input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required />
             </div>
-            <div className="button">
-              <button type="submit" id="aButton" style={{ cursor: "pointer" }}>
-                Register
-              </button>
-              <span className="lmessage1" id="llogin_message">
-                {errorMessages.error}
-              </span>
+            <div className="input-group">
+              <FaEnvelope className="icon" />
+              <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
             </div>
-            <div className="asignup">
-              Already have an account?{" "}
-              <a href="/login" className="bsignup">
-                Login
-              </a>{" "}
-              here
+            <div className="input-group">
+              <FaPhone className="icon" />
+              <input type="text" name="mobile" placeholder="Mobile Number" value={formData.mobile} onChange={handleChange} required />
             </div>
+            <div className="input-group">
+              <FaUser className="icon" />
+              <input type="text" name="uname" placeholder="Username" value={formData.uname} onChange={handleChange} required />
+            </div>
+            <div className="input-group">
+              <FaLock className="icon" />
+              <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
+            </div>
+            <div className="input-group">
+              <FaLock className="icon" />
+              <input type="password" name="cpassword" placeholder="Confirm Password" value={formData.cpassword} onChange={handleChange} required />
+            </div>
+            {passwordMatch === false && <p className="password-error">Passwords do not match</p>}
+            {passwordMatch === true && <p className="password-success">Passwords match</p>}
+            <motion.button whileHover={{ scale: 1.1 }} type="submit" className="register-btn">Register</motion.button>
           </form>
-        </div>
-      </div>
+          <p className="login-link">Already have an account? <a href="/login">Login</a></p>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
