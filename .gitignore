@@ -1,0 +1,7 @@
+code-genie-api/.env
+code-genie-backend/.env
+code-genie-frontend/.env
+code-genie-frontend/src/assets/styles/temp.css
+code-genie-api/config.py
+code-genie-api/__pycache__
+code-genie-api/dummy.py
