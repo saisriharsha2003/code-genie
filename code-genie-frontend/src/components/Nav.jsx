@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../index.css";
-import user from "../assets/user.png";
-import edit from "../assets/edit.png";
-import delete1 from "../assets/delete.png";
-import logout from "../assets/logout.png";
+import user from "../assets/images/user.png";
+import "../assets/styles/nav.css";
+import edit from "../assets/images/edit.png";
+import logout from "../assets/images/logout.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import logo from "../assets/logo.jpg";
+import logo from "../assets/images/logo.jpg";
 
 const Nav = () => {
   const [userName, setUserName] = useState("");
@@ -54,10 +53,7 @@ const Nav = () => {
             <Link to="/home">Home</Link>
           </li>
           <li>
-            <Link to="/view-notes">View Notes</Link>
-          </li>
-          <li>
-            <Link to="/add-note">Add Note</Link>
+            <Link to="/chat-page">CodeGenie</Link>
           </li>
         </ul>
 
@@ -71,7 +67,7 @@ const Nav = () => {
                 alt="User"
                 style={{ width: "80px", height: "80px" }}
               />
-              <h2 id="cu_name" style={{ color: "#CCBA78" }}>
+              <h2 id="cu_name" style={{ color: "#00FFFF" }}>
                 {userName}
               </h2>
             </div>
@@ -83,6 +79,15 @@ const Nav = () => {
                 style={{ width: "50px", height: "50px" }}
               />
               <p>Edit Profile</p>
+              <span className="ext">&gt;</span>
+            </Link>
+            <Link to="/change-password" className="sub-menu-link">
+              <img
+                src={edit}
+                alt="Change Password"
+                style={{ width: "50px", height: "50px" }}
+              />
+              <p>Change Password</p>
               <span className="ext">&gt;</span>
             </Link>
             <Link to="/" className="sub-menu-link" onClick={handleLogout}>
