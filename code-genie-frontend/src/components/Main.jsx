@@ -1,5 +1,6 @@
 import React from "react";
 import MainNav from "./MainNav";
+import "../assets/styles/main.css";
 
 const Main = () => {
   return (
@@ -9,9 +10,7 @@ const Main = () => {
         <div className="container" style={{ background: "black", opacity: 0.9 }}>
           <p className="homep1">
             Welcome to <span className="homep">CodeGenie</span>
-            
           </p>
-          
         </div>
       </div>
     </div>
