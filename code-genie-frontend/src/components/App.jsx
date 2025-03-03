@@ -7,6 +7,7 @@ import Home from "./Home";
 import EditProfile from "./EditProfile";
 import ChangePassword from "./ChangePassword";
 import { ToastContainer } from "react-toastify";
+import ChatPage from "./ChatPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/chat-page" element={<ChatPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/change-password" element={<ChangePassword />} />
