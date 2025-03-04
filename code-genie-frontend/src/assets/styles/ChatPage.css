@@ -84,8 +84,7 @@
 }
 
 pre {
-  background-color: rgba(0, 255, 255, 0.1);
-  padding: 10px;
+  background-color: black;
   border-radius: 10px;
   overflow-x: auto;
 }

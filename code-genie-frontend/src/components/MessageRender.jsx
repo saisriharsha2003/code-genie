@@ -1,7 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import gfm from "remark-gfm";
 import { Copy } from "lucide-react";
 
@@ -68,11 +68,14 @@ const MessageRenderer = ({ message }) => {
             </button>
           </div>
           <SyntaxHighlighter
-            style={oneDark}
+            style={vscDarkPlus}
             language={match[1]}
             PreTag="div"
             {...props}
-            customStyle={{ margin: 0 }}
+            customStyle={{ margin: 0, backgroundColor: "black", fontSize: "15px" }}
+            codeTagProps={{
+              style: { backgroundColor: "transparent" }, 
+            }}
           >
             {String(children).replace(/\n$/, "")}
           </SyntaxHighlighter>
@@ -84,10 +87,11 @@ const MessageRenderer = ({ message }) => {
         <pre
           {...props}
           style={{
-            backgroundColor: "#1f2937",
-            padding: "12px",
+            backgroundColor: "black",
             borderRadius: "8px",
             overflowX: "auto",
+            marginBottom: "16px",
+            marginTop: "16px",
             border: "1px solid #00ffff",
             color: "#ffffff",
             fontFamily: "monospace",

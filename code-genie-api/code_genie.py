@@ -45,13 +45,13 @@ def chat():
 
         refined_prompt = enhance_prompt(user_message)
 
-        completion = client.chat.completions.create(
-            model="gpt-3.5-turbo-0125",
-            messages=[{"role": "user", "content": refined_prompt}]
-        )
+        # completion = client.chat.completions.create(
+        #     model="gpt-3.5-turbo-0125",
+        #     messages=[{"role": "user", "content": refined_prompt}]
+        # )
 
-        raw_response = completion.choices[0].message.content  
-        # raw_response = response  # Use mock response for testing
+        # raw_response = completion.choices[0].message.content  
+        raw_response = response  # Use mock response for testing
         print(raw_response)
 
         return jsonify({"botreply": raw_response})
