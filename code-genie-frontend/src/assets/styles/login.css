@@ -135,6 +135,23 @@
   animation: fadeIn 0.3s ease-in-out;
 }
 
+.forgot-password {
+  color: #ff6b6b;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+  text-align: center;
+  margin-top: 10px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.forgot-password:hover {
+  color: #ff3b3b;
+  transform: scale(1.1);
+  text-decoration: underline;
+}
+
+
 @keyframes fadeIn {
   from {
     opacity: 0;
