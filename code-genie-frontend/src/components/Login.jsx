@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MainNav from "./MainNav";
 import axios from "axios";
@@ -10,18 +10,9 @@ import { FaUser, FaLock } from "react-icons/fa";
 import "../assets/styles/login.css";
 
 const Login = () => {
-  const [formData, setFormData] = useState({ uname: "", password: "", cpassword: "" });
-  const [passwordMatch, setPasswordMatch] = useState(null);
+  const [formData, setFormData] = useState({ uname: "", password: "" });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (formData.password && formData.cpassword) {
-      setPasswordMatch(formData.password === formData.cpassword);
-    } else {
-      setPasswordMatch(null);
-    }
-  }, [formData.password, formData.cpassword]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,14 +21,19 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!formData.uname || !formData.password || !formData.cpassword) {
-      toast.error("Fill all details properly", { autoClose: 1500 });
+    if (!formData.uname || !formData.password) {
+      toast.error("Please fill all details", { autoClose: 1500 });
       return;
     }
 
     setLoading(true);
     try {
-      const response = await axios.post(`${BASE_URL}/api/user/login`, formData, { headers: { "Content-Type": "application/json" } });
+      const response = await axios.post(
+        `${BASE_URL}/api/user/login`,
+        formData,
+        { headers: { "Content-Type": "application/json" } }
+      );
+
       toast.success(response.data.message, { autoClose: 1500 });
       if (response.status === 200) {
         const { name, uname } = response.data;
@@ -49,12 +45,13 @@ const Login = () => {
           position: "top-right",
           autoClose: 1500,
         });
+
         setTimeout(() => {
           navigate("/home");
         }, 2000);
       }
     } catch (err) {
-      toast.error(err.response?.data?.Error || "Something went wrong.", { autoClose: 1500 });
+      toast.error(err.response?.data?.error || "Something went wrong.", { autoClose: 1500 });
     } finally {
       setLoading(false);
     }
@@ -75,15 +72,16 @@ const Login = () => {
               <FaLock className="icon" />
               <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
             </div>
-            <div className="input-group">
-              <FaLock className="icon" />
-              <input type="password" name="cpassword" placeholder="Confirm Password" value={formData.cpassword} onChange={handleChange} required />
-            </div>
-            {passwordMatch === false && <p className="password-error">Passwords do not match</p>}
-            {passwordMatch === true && <p className="password-success">Passwords match</p>}
-            <motion.button whileHover={{ scale: 1.1 }} type="submit" className="login-btn">Login</motion.button>
+            <motion.button whileHover={{ scale: 1.1 }} type="submit" className="login-btn">
+              {loading ? "Logging in..." : "Login"}
+            </motion.button>
           </form>
           <p className="signup-link">Don't have an account? <a href="/register">Register</a></p>
+          <div className="password-options">
+            <motion.p whileHover={{ scale: 1.1 }} className="forgot-password" onClick={() => navigate("/reset-password")}>
+              Forgot Password?
+            </motion.p>
+          </div>
         </motion.div>
       </motion.div>
     </div>

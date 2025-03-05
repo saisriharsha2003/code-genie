@@ -8,6 +8,9 @@ import EditProfile from "./EditProfile";
 import ChangePassword from "./ChangePassword";
 import { ToastContainer } from "react-toastify";
 import ChatPage from "./ChatPage";
+import ResetPassword from "./ResetPassword";
+import VerifyCode from "./VerifyCode";
+import NewPassword from "./NewPassword";
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/reset-password" element={<ResetPassword/>} />
+        <Route path="/verify-code" element={<VerifyCode />} />
+        <Route path="/new-password" element={<NewPassword />} />
       </Routes>
       <ToastContainer />
     </div>
