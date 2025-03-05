@@ -1,5 +1,6 @@
 code-genie-api/.env
 code-genie-backend/.env
+code-genie-backend/config.js
 code-genie-frontend/.env
 code-genie-frontend/src/assets/styles/temp.css
 code-genie-api/config.py
